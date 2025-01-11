@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "63e185b1-421a-459a-bc67-0f396bc38fb8",
+		"name": "Session3 Data Driven Session",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "POST Create users with Excel File",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\r",
+							"    \"check status code\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"}\r",
+							"\r",
+							"    )"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"job\": \"{{job}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
