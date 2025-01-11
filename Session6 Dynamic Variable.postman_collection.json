@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "ca2c6651-c6f8-4e06-8cb3-0c3977f0f52e",
+		"name": "Session6 Dynamic Variable",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "Create New User using random variables",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"pm.globals.set(\"newGlobalVar\",\"abc\");\r",
+							"console.log(\"global variable :\",pm.globals.get(\"globalURL\"));\r",
+							"console.log(\"set global variable :\",pm.globals.get(\"newGlobalVar\"));\r",
+							"pm.globals.unset(\"newGlobalVar\");"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomFirstName}}\",\r\n    \"job\": \"{{$randomJobType}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check status code\", ()=>{\r",
+							"    pm.response.to.have.status(200)\r",
+							"});\r",
+							"\r",
+							"//Below tests and responseCode, responseBody is depricated butthey works\r",
+							"tests[\"status code expected\"] = responseCode.code==200;\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"per\");\r",
+							"});\r",
+							"\r",
+							"//Below tests and responseCode, responseBody is depricated butthey works\r",
+							"tests[\"string expected\"] = responseBody.has(\"per_page\");\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check that data has 'George'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].first_name).to.eql(\"George\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check that 'Eve' has id='4'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    const hasEveWithId4 = jsonData.data.some(user => user.first_name === \"Eve\" && user.id === 4);\r",
+							"    \r",
+							"    pm.expect(hasEveWithId4).to.be.true;  // Expecting it to be true if the condition is met\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Successful GETST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
