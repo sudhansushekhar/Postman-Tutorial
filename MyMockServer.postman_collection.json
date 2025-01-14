@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "09b2d35e-dd3e-46d2-9220-a96f58f871ae",
+		"name": "MyMockServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "getTest",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getTest",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getTest"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getTest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getTest"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "this API is to test the GET request"
+				}
+			]
+		},
+		{
+			"name": "postTest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/postTest",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"postTest"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/postTest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"postTest"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "tis API is to test the POST Request"
+				}
+			]
+		},
+		{
+			"name": "getWithBody",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getWithBody",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getWithBody"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getWithBody",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getWithBody"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"Location\": \"{{$randomCity}}\",\n    \"time\":\"{{$timestamp}}\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getQueryParameter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mockURL}}/user",
+					"host": [
+						"{{mockURL}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getQueryParameter1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mockURL}}/user?id=1",
+							"host": [
+								"{{mockURL}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":1\r\n}"
+				},
+				{
+					"name": "getQueryParameter2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mockURL}}/user?id=3",
+							"host": [
+								"{{mockURL}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\":3,\r\n    \"name\":\"{{$randomFullName}}\",\r\n    \"email\":\"{{$randomEmail}}\",\r\n    \"joininig_date\": \"{{$randomDatePast}}\"\r\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://8184f9bd-748b-4b00-ae09-5200f7ed91e9.mock.pstmn.io"
+		}
+	]
+}
