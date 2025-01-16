@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "ab28bc91-0811-4c1a-809b-44b153587243",
+		"name": "Session-9 Advanced Test Case and Assertion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "Fetch User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//store response json data into variable\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"check for string value\", function () {\r",
+							"    console.log(\"page : \", jsonData.page);\r",
+							"    console.log(\"Total pages : \", jsonData.total_pages);\r",
+							"    console.log(\"Per page : \", jsonData.per_page);\r",
+							"     pm.expect(jsonData.data[0].email).to.be.a('string');\r",
+							"     pm.expect(jsonData.data[0].first_name).to.be.a('string');\r",
+							"     pm.expect(jsonData.data[0].last_name).to.be.a('string');\r",
+							"     pm.expect(jsonData.data[0].avatar).to.be.a('string');\r",
+							"     pm.expect(jsonData.support.url).to.be.a('string');\r",
+							"     pm.expect(jsonData.support.text).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check for Avatar at index 1\", function () {\r",
+							"    var avatar = jsonData.data[1].avatar;\r",
+							"     console.log(\"Avatar at index 1 : \", avatar);\r",
+							"\r",
+							"     pm.expect(jsonData.data).to.be.an('array');\r",
+							"     pm.expect(jsonData.data[1]).to.have.property('avatar');\r",
+							"     \r",
+							"     pm.expect(jsonData.data[1].avatar).to.eql(\"https://reqres.in/img/faces/8-image.jpg\");\r",
+							"\r",
+							"});\r",
+							" pm.test(\"Check for URL \", function () {\r",
+							"     var url = jsonData.support.url;\r",
+							"     console.log(\"Url is : \", url);\r",
+							"     pm.expect(jsonData.support.url).to.eql(\"https://contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral\");\r",
+							" });\r",
+							"\r",
+							"//Count and log IDS\r",
+							" pm.test(\"Count and log IDs\", function () {\r",
+							"     pm.expect(jsonData).to.be.an('object');\r",
+							"     pm.expect(jsonData.data).to.be.an('array');\r",
+							"     pm.expect(jsonData.data).to.have.length.above(0);\r",
+							"\r",
+							"    //Number if ID is equal to number of items in array\r",
+							"     console.log(\"Number if ID is \",jsonData.data.length)\r",
+							"     // Count and log IDs\r",
+							"});\r",
+							"\r",
+							"// Log ID\r",
+							"pm.test(\"log IDs\", function () \r",
+							"{\r",
+							"     for (var id=0; id<jsonData.data.length; id++){\r",
+							"        \r",
+							"        console .log(\"User ID : \" + jsonData.data[id].id)\r",
+							"        console.log(\"User name: \" + jsonData.data[id].first_name);\r",
+							"     }\r",
+							"});\r",
+							"\r",
+							"//Other way to log ID using foreach\r",
+							" \r",
+							" pm.test(\"log IDs using for each\", function () \r",
+							"{\r",
+							"    jsonData.data.forEach((user) => {\r",
+							"            pm.expect(user).to.have.property('id');\r",
+							"            pm.expect(user).to.have.property('first_name');\r",
+							"            //concatenate ID with first name\r",
+							"            console.log(\"User ID: \" + user.id + \" -> \" +user.first_name);\r",
+							"     });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrderID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get Order Id\", function () {\r",
+							"    pm.expect(pm.response.json().uuid).to.be.a('string')\r",
+							"    // Set the collection-scope \"uuid\" variable to the orderID received from the API\r",
+							"    // This lets us use it in other requests\r",
+							"    pm.collectionVariables.set('orderId', pm.response.json().uuid)\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://httpbin.org/uuid",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateOrder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var uuId = pm.collectionVariables.get(\"orderId\");\r",
+							"pm.test(\"Check for Order Id variable\", function () {\r",
+							"     var responseBody = pm.response.json();\r",
+							"     pm.expect(responseBody.json.orderId).to.eql(uuId);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\":\"{{orderId}}\",\r\n    \"products\":[\r\n        {\r\n            \"quantity\":10,\r\n            \"productId\":311\r\n        },\r\n        {\r\n            \"quantity\":50,\r\n            \"productId\":312\r\n        },{\r\n            \"quantity\":23,\r\n            \"productId\":313\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "orderId",
+			"value": ""
+		}
+	]
+}

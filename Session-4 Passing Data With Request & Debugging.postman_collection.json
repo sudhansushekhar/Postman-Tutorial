@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "28aa2393-7970-4655-8990-3c74ebad6f96",
+		"name": "Session-4 Passing Data With Request & Debugging",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "GET (Passing Data)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/get?name=sud&age=30",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "sud"
+						},
+						{
+							"key": "age",
+							"value": "30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET (Pass Status to check)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/204",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						"204"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET (Pass Status to check using path parameter in new way)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/status/:as?size=xl&color=white",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						":as"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "xl"
+						},
+						{
+							"key": "color",
+							"value": "white"
+						}
+					],
+					"variable": [
+						{
+							"key": "as",
+							"value": "204"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
