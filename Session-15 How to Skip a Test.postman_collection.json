@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "f0de115a-438c-4738-b34b-a04aa47d921b",
+		"name": "Session-15 How to Skip a Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//use \"skip\" keyword to skip test\r",
+							"// pm.test.skip(\"Response time is less than 200ms\", function () {\r",
+							"//     pm.expect(pm.response.responseTime).to.be.below(5);\r",
+							"// });\r",
+							"\r",
+							"// one can skip a test based on the environment to test a case\r",
+							"console.log(pm.environment.get(\"url\"));\r",
+							"console.log(pm.environment.get(\"url\"));\r",
+							"let isQA = pm.environment.get('url')=='https://qa.reqres.in/api';\r",
+							"\r",
+							"\r",
+							"(isQA?pm.test:pm.test.skip)(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(50);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

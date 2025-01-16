@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "e1a6cc6b-dd3d-408b-8e6b-7d886a553fb6",
+		"name": "Session-10 Mock API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "getWithoutBody",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mockURL}}/getTest",
+					"host": [
+						"{{mockURL}}"
+					],
+					"path": [
+						"getTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postWithoutBody",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{mockURL}}/postTest",
+					"host": [
+						"{{mockURL}}"
+					],
+					"path": [
+						"postTest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getWithBody",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mockURL}}/getWithBody",
+					"host": [
+						"{{mockURL}}"
+					],
+					"path": [
+						"getWithBody"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user with id 3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{mockURL}}/user?id=3",
+					"host": [
+						"{{mockURL}}"
+					],
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

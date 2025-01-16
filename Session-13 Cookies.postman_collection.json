@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "69cc02cd-562c-4df0-b76e-6cb75ace3e88",
+		"name": "Session-13 Cookies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40918452"
+	},
+	"item": [
+		{
+			"name": "cookie test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"cookie existance in header\", function () {\r",
+							"\r",
+							"     pm.expect(pm.response.headers.has('set-cookie')).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"cookie1 existance in cookie tab\", function () {\r",
+							"    pm.expect(pm.cookies.has(\"sails.sid\")).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"cookie2 existance in cookie tab\", function () {\r",
+							"    pm.expect(pm.cookies.has(\"sud\")).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check cookie2 value in cookie tab\", function () {\r",
+							"    pm.expect(pm.cookies.get(\"sud\")).to.eql(\"singh\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/basic-auth",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"basic-auth"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
